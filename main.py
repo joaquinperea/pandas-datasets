@@ -13,10 +13,14 @@ def create_dataset():
     df = pd.DataFrame(data_dict)
     return df
 
-def main():
+def main(df):
     """
     """
-
+    final_df = pd.DataFrame()
+    final_df[['First','Second','Third']] = df[['FirstPlace', 'SecondPlace', 'ThirdPlace']].apply(pd.Series.value_counts).fillna(0).astype(int)
+    return final_df
 
 df = create_dataset()
+final_df = main(df)
 print(df)
+print(final_df)
